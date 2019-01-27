@@ -86,15 +86,50 @@
 //}
 
 
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//int main()
+//{
+//	int a = 10;
+//	int*p = &a;
+//
+//	int b = reinterpret_cast<int>(p);
+//	system("pause");
+//	return 0;
+//}
+
+
+//#include<iostream>
+//using namespace std;
+//
+//class A
+//{
+//public:
+//	explicit A(int a)
+//	{
+//		cout << "A(int a)" << endl;
+//	}
+//private:
+//	int _a;
+//};
+//
+//int main()
+//{
+//	A a2 = 1;
+//	system("pause");
+//}
+
+
 #include<iostream>
-#include<string>
 using namespace std;
+
 int main()
 {
-	int a = 10;
-	int*p = &a;
-
-	int b = reinterpret_cast<int>(p);
+	size_t pos = 0;
+	int end= 3;
+	while (end >= pos)
+		--end;
 	system("pause");
 	return 0;
 }
