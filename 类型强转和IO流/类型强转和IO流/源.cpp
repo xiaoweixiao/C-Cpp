@@ -126,10 +126,12 @@ using namespace std;
 
 int main()
 {
-	size_t pos = 0;
+	/*size_t pos = 0;
 	int end= 3;
 	while (end >= pos)
-		--end;
+		--end;*/
+	cout << sizeof(size_t) << endl;
+	cout << sizeof(unsigned) << endl;
 	system("pause");
 	return 0;
 }

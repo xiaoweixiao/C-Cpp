@@ -210,10 +210,10 @@
 //}
 
 
-#include<iostream>
-#include<memory>
-
-using namespace std;
+//#include<iostream>
+//#include<memory>
+//
+//using namespace std;
 //
 //struct ListNode
 //{
@@ -240,28 +240,108 @@ using namespace std;
 //	return 0;
 //}
 
-struct ListNode
+//struct ListNode
+//{
+//	int _data;
+//	weak_ptr<ListNode> _prev;
+//	weak_ptr<ListNode> _next;
+//	~ListNode(){ cout << "~ListNode()" << endl; }
+//};
+//void Func()
+//{
+//	shared_ptr<ListNode> node1(new ListNode);
+//	shared_ptr<ListNode> node2(new ListNode);
+//	cout << node1.use_count() << endl;
+//	cout << node2.use_count() << endl;
+//	node1->_next = node2;
+//	node2->_prev = node1;
+//	cout << node1.use_count() << endl;
+//	cout << node2.use_count() << endl;
+//}
+//int main()
+//{
+//	Func();
+//	system("pause");
+//	return 0;
+//}
+//#include<iostream>
+//#include<memory>
+//
+//using namespace std;
+//template<class T>
+//
+//struct FreeFunc {
+//	void operator()(T* ptr)
+//	{
+//		cout << "free:" << ptr << endl;
+//		free(ptr);
+//	}
+//};
+//template<class T>
+//struct DeleteArrayFunc {
+//	void operator()(T* ptr)
+//	{
+//		cout << "delete[]" << ptr << endl;
+//		delete[] ptr;
+//	}
+//};
+//void Func()
+//{
+//	FreeFunc<int> freeFunc;
+//	shared_ptr<int> sp1((int*)malloc(4), freeFunc);
+//
+//	DeleteArrayFunc<int> deleteArrayFunc;
+//	shared_ptr<int> sp2((int*)malloc(4), deleteArrayFunc);
+//}
+//int main()
+//{
+//	Func();
+//	system("pause");
+//	return 0;
+//}
+
+#include<iostream>
+#include <thread>
+#include <mutex>
+using namespace std;
+// C++11的库中也有一个lock_guard，下面的LockGuard造轮子其实就是为了学习他的原理
+template<class Mutex>
+class LockGuard
 {
-	int _data;
-	weak_ptr<ListNode> _prev;
-	weak_ptr<ListNode> _next;
-	~ListNode(){ cout << "~ListNode()" << endl; }
+public:
+	LockGuard(Mutex& mtx)
+		:_mutex(mtx)
+	{
+		_mutex.lock();
+	}
+	~LockGuard()
+	{
+		_mutex.unlock();
+	}
+	LockGuard(const LockGuard<Mutex>&) = delete;
+private:
+	// 注意这里必须使用引用，否则锁的就不是一个互斥量对象
+	Mutex& _mutex;
 };
+mutex mtx;
+static int n = 0;
 void Func()
 {
-	shared_ptr<ListNode> node1(new ListNode);
-	shared_ptr<ListNode> node2(new ListNode);
-	cout << node1.use_count() << endl;
-	cout << node2.use_count() << endl;
-	node1->_next = node2;
-	node2->_prev = node1;
-	cout << node1.use_count() << endl;
-	cout << node2.use_count() << endl;
+	for (size_t i = 0; i < 1000000; ++i)
+	{
+		LockGuard<mutex> lock(mtx);
+		++n;
+	}
 }
 int main()
 {
-	Func();
-	system("pause");
+	int begin = clock();
+	thread t1(Func);
+	thread t2(Func);
+	t1.join();
+	t2.join();
+	int end = clock();
+	cout << n << endl;
+	cout << "cost time:" << end - begin << endl;
 	return 0;
 }
-
