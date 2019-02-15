@@ -71,7 +71,7 @@ int main()
 {
 	int arr[] = { 9, 1, 2, 5, 7, 4, 8, 6, 3, 5 };
 	int len = sizeof(arr)/sizeof(arr[0]);
-	ShellSort(arr, len);
+	insertSort(arr, len);
 	for (int i = 0; i < len; i++)
 		printf("%d ", arr[i]);
 	system("pause");
