@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "关机", "关机\关机.vcxproj", "{DA9E4384-55BF-4E77-BB79-79130DFB182B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA9E4384-55BF-4E77-BB79-79130DFB182B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DA9E4384-55BF-4E77-BB79-79130DFB182B}.Debug|Win32.Build.0 = Debug|Win32
+		{DA9E4384-55BF-4E77-BB79-79130DFB182B}.Release|Win32.ActiveCfg = Release|Win32
+		{DA9E4384-55BF-4E77-BB79-79130DFB182B}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
