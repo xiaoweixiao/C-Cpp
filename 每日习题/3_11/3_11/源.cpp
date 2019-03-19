@@ -1,3 +1,19 @@
+//A n = 0; while (ch = getchar() != '\n')n++;
+//B n = 0; while (getchar() != '\n')n++;
+//C for (n = 0; getchar() != '\n'; n++);
+//D n = 0; for (ch = getchar(); ch != '\n'; n++);
+
+//#include<iostream>
+//using namespace std;
+//int main()
+//{
+//	int n = 0;
+//	char ch;
+//	n = 0; 
+//	for (ch = getchar(); ch != '\n'; n++);
+//}
+
+
 //#include<iostream>
 //#include<string>
 //#include<vector>
@@ -36,31 +52,33 @@
 //	}	
 //	return 0;
 //}
-#include<iostream>
-using namespace std;
+//#include<iostream>
+//using namespace std;
+//
+//int MinTimes(int& num1, int&num2)
+//{
+//	int times = num1;
+//	if (num1 == num2)return num1;
+//	else
+//	{
+//		if (num2%num1 == 0)
+//			return num2;
+//		while (num2%num1)
+//		{
+//			times *= num1;
+//			int tmp = num1;
+//			num1 = num2%num1;
+//			num2 = tmp;
+//		}
+//	}
+//}
+//int main()
+//{
+//	int num1,num2;
+//	cin >> num1 >> num2;
+//	cout << MinTimes(num1, num2) << endl;
+//	system("pause");
+//	return 0;
+//}
 
-int MinTimes(int& num1, int&num2)
-{
-	int times = num1;
-	if (num1 == num2)return num1;
-	else
-	{
-		if (num2%num1 == 0)
-			return num2;
-		while (num2%num1)
-		{
-			times *= num1;
-			int tmp = num1;
-			num1 = num2%num1;
-			num2 = tmp;
-		}
-	}
-}
-int main()
-{
-	int num1,num2;
-	cin >> num1 >> num2;
-	cout << MinTimes(num1, num2) << endl;
-	system("pause");
-	return 0;
-}
+
