@@ -19,7 +19,7 @@ SlistNode* BuySlist(Datatype x)
 	return node;
 }
 
-void SlistPushBack(SlistNode**pphead,Datatype x)
+void SlistPushBack(SlistNode**pphead, Datatype x)
 {
 	if (NULL == *pphead)
 	{
@@ -30,7 +30,7 @@ void SlistPushBack(SlistNode**pphead,Datatype x)
 		SlistNode*cur = *pphead;
 		while (cur->next)
 			cur = cur->next;
-		cur ->next= BuySlist(x);
+		cur->next = BuySlist(x);
 	}
 }
 void SlistPrint(SlistNode*phead)
@@ -45,7 +45,7 @@ void SlistPrint(SlistNode*phead)
 	}
 	printf("NULL\n");
 }
-void SlistPrintTailToHead(SlistNode* phead)					//´ÓÎ²µ½Í·´òÓ¡µ¥Á´±í·ÇµÝ¹é
+void SlistPrintTailToHead(SlistNode* phead)//´ÓÎ²µ½Í·´òÓ¡µ¥Á´±í·ÇµÝ¹é
 {
 	SlistNode*end = NULL;
 	while (end != phead)
@@ -59,7 +59,7 @@ void SlistPrintTailToHead(SlistNode* phead)					//´ÓÎ²µ½Í·´òÓ¡µ¥Á´±í·ÇµÝ¹é
 	printf("\n");
 }
 
-void PrintTailToHeadR(SlistNode* head)					//´ÓÎ²µ½Í·´òÓ¡µ¥Á´±íµÝ¹é·¨
+void PrintTailToHeadR(SlistNode* head)//´ÓÎ²µ½Í·´òÓ¡µ¥Á´±íµÝ¹é·¨
 {
 	if (head == NULL)
 		return;
@@ -67,7 +67,7 @@ void PrintTailToHeadR(SlistNode* head)					//´ÓÎ²µ½Í·´òÓ¡µ¥Á´±íµÝ¹é·¨
 	PrintTailToHeadR(head->next);
 	printf("%d ", head->x);
 }
-SlistNode* SlistFind(SlistNode*ps,Datatype x)
+SlistNode* SlistFind(SlistNode*ps, Datatype x)
 {
 	SlistNode*cur = ps;
 	while (cur)
@@ -79,7 +79,7 @@ SlistNode* SlistFind(SlistNode*ps,Datatype x)
 	return NULL;
 }
 
-void SlistDelNonTailNode(SlistNode* pos)			//É¾³ýÒ»¸öÎÞÍ·µ¥Á´±íµÄ·ÇÎ²½Úµã£¨²»ÄÜ±éÀúÁ´±í£©
+void SlistDelNonTailNode(SlistNode* pos)//É¾³ýÒ»¸öÎÞÍ·µ¥Á´±íµÄ·ÇÎ²½Úµã£¨²»ÄÜ±éÀúÁ´±í£©
 {
 	//Ìæ»»·¨
 	assert(pos&&pos->next);
@@ -96,11 +96,11 @@ void SlistInsertFront(SlistNode* pos, Datatype x)//ÔÚÎÞÍ·µ¥Á´±íµÄÒ»¸ö½ÚµãÇ°²åÈëÒ
 	assert(newnode&&pos);
 	newnode->x = pos->x;
 	newnode->next = pos->next;
-	pos ->x=x;
+	pos->x = x;
 	pos->next = newnode;
 }
 
-void SlistErase(SlistNode**phead,SlistNode*pos)
+void SlistErase(SlistNode**phead, SlistNode*pos)
 {
 	SlistNode *cur = *phead;
 	if ((*phead) == NULL || pos == NULL)
@@ -113,7 +113,7 @@ void SlistErase(SlistNode**phead,SlistNode*pos)
 }
 SlistNode* SlistJosephCircle(SlistNode*phead, int k)//µ¥Á´±íÊµÏÖÔ¼Éª·ò»·(JosephCircle)
 {
-	SlistNode*cur =phead;
+	SlistNode*cur = phead;
 	SlistNode*tail = phead;
 	if (phead == NULL)
 		return NULL;
@@ -138,14 +138,14 @@ SlistNode* SlistJosephCircle(SlistNode*phead, int k)//µ¥Á´±íÊµÏÖÔ¼Éª·ò»·(JosephC
 }
 
 
-SlistNode* SlistReverse1(SlistNode* list)			//¾ÍµØÄæÖÃ / ·´×ªµ¥Á´±í
+SlistNode* SlistReverse1(SlistNode* list)//¾ÍµØÄæÖÃ / ·´×ªµ¥Á´±í
 {
 	SlistNode*n1, *n2, *n3;
 	if (list == NULL || list->next == NULL)
 		return list;
-	n1= list;
+	n1 = list;
 	n2 = n1->next;
-	n3 =n2->next;
+	n3 = n2->next;
 	while (n2)
 	{
 		n2->next = n1;
@@ -159,29 +159,29 @@ SlistNode* SlistReverse1(SlistNode* list)			//¾ÍµØÄæÖÃ / ·´×ªµ¥Á´±í
 	list = n1;
 	return list;
 }
-SlistNode*SlistReverse2(SlistNode*s)		//Í·²åÊ½ÄæÖÃ
+SlistNode*SlistReverse2(SlistNode*s)//Í·²åÊ½ÄæÖÃ
 {
-	SlistNode*list = NULL;
+	SlistNode*new = NULL;
 	SlistNode*cur = s;
 	while (cur)
 	{
-		SlistNode*pre = cur;			//ÄÃÀ´ÁËsµÄµÚcur¸ö½áµã·ÅÔÚpre½áµã
+		SlistNode*tmp = cur;//ÄÃÀ´ÁËsµÄµÚcur¸ö½áµã·ÅÔÚtmp½áµã
 		cur = cur->next;
-										
-		pre->next = list;				//°ÑÄÃÀ´µÄ½áµãÍ·²åµ½listÀï
-		list = pre;
+		//°ÑÄÃÀ´µÄ½áµãÍ·²åµ½newÀï
+		tmp->next = new;
+		new = tmp;
 	}
-	return list;
+	return new;
 }
 
 
-void Swap(size_t *a,size_t *b)
+void Swap(size_t *a, size_t *b)
 {
 	(*a) ^= *b;
 	(*b) ^= *a;
 	(*a) ^= *b;
 }
-void SlistBubbleSort(SlistNode* list)				//µ¥Á´±íÅÅÐò£¨Ã°ÅÝÅÅÐò&¿ìËÙÅÅÐò£©
+void SlistBubbleSort(SlistNode* list)//µ¥Á´±íÅÅÐò£¨Ã°ÅÝÅÅÐò&¿ìËÙÅÅÐò£©
 {
 	SlistNode*tail = NULL, *cur = list;
 	if (list == NULL || list->next == NULL)
@@ -207,11 +207,11 @@ void SlistBubbleSort(SlistNode* list)				//µ¥Á´±íÅÅÐò£¨Ã°ÅÝÅÅÐò&¿ìËÙÅÅÐò£©
 }
 
 
-SlistNode* SlistMerge(SlistNode* list1, SlistNode* list2)			// ÉýÐò //ºÏ²¢Á½¸öÓÐÐòÁ´±í, ºÏ²¢ºóÒÀÈ»ÓÐÐò
+SlistNode* SlistMerge(SlistNode* list1, SlistNode* list2)// ÉýÐò //ºÏ²¢Á½¸öÓÐÐòÁ´±í, ºÏ²¢ºóÒÀÈ»ÓÐÐò
 {
 	SlistNode*cur1 = list1;
 	SlistNode*cur2 = list2;
-	SlistNode*new =NULL;
+	SlistNode*new = NULL;
 	SlistNode*newtail = NULL;
 	if (cur1 == NULL)
 		return cur2;
@@ -251,9 +251,9 @@ SlistNode* SlistMerge(SlistNode* list1, SlistNode* list2)			// ÉýÐò //ºÏ²¢Á½¸öÓÐ
 SlistNode* SlistFindMidNode(SlistNode* list)//²éÕÒµ¥Á´±íµÄÖÐ¼ä½Úµã£¬ÒªÇóÖ»ÄÜ±éÀúÒ»´ÎÁ´±í
 {
 	SlistNode*slow = list, *fast = list->next->next;//fastÏÈ×ß
-	if (list == NULL||list->next==NULL)
+	if (list == NULL || list->next == NULL)
 		return list;
-	
+
 	while (fast)
 	{
 		slow = slow->next;
@@ -268,7 +268,7 @@ SlistNode* SlistFindMidNode(SlistNode* list)//²éÕÒµ¥Á´±íµÄÖÐ¼ä½Úµã£¬ÒªÇóÖ»ÄÜ±éÀú
 SlistNode* SlistFindTailKNode(SlistNode* list, int k)//²éÕÒµ¥Á´±íµÄµ¹ÊýµÚk¸ö½Úµã£¬ÒªÇóÖ»ÄÜ±éÀúÒ»´ÎÁ´±í
 {
 	SlistNode*slow, *fast;
-	slow = fast =list;
+	slow = fast = list;
 	while (k--)
 	{
 		if (fast == NULL)
@@ -287,9 +287,9 @@ SlistNode* SlistFindTailKNode(SlistNode* list, int k)//²éÕÒµ¥Á´±íµÄµ¹ÊýµÚk¸ö½Úµã
 
 void DelTailK(SlistNode**p, int k)//É¾³ýÁ´±íµÄµ¹ÊýµÚK¸ö½áµã
 {
-	SlistNode*tmp=SlistFindTailKNode(*p, k);
+	SlistNode*tmp = SlistFindTailKNode(*p, k);
 	SlistNode*prev = *p, *cur = prev->next;
-	while (prev!=tmp)
+	while (prev != tmp)
 	{
 		prev = prev->next;
 		cur = cur->next;
@@ -302,7 +302,7 @@ void DelTailK(SlistNode**p, int k)//É¾³ýÁ´±íµÄµ¹ÊýµÚK¸ö½áµã
 
 SlistNode* SlistIsCycle(SlistNode* list)// Á´±í´ø»·ÎÊÌâ //ÅÐ¶Ïµ¥Á´±íÊÇ·ñ´ø»·£¿
 {
-	SlistNode*slow=list, *fast=list;
+	SlistNode*slow = list, *fast = list;
 	while (fast&&fast->next)
 	{
 		slow = slow->next;
@@ -325,7 +325,7 @@ SlistNode* SlistEntryNode(SlistNode* list, SlistNode* meet)//Çó»·µÄÈë¿Úµã£¿
 }
 
 
-int SlistCycleLen(SlistNode*entry,SlistNode* meet)//Èô´ø»·£¬Çó»·µÄ³¤¶È£¿
+int SlistCycleLen(SlistNode*entry, SlistNode* meet)//Èô´ø»·£¬Çó»·µÄ³¤¶È£¿
 {
 	int len = 1;
 	while (meet != entry)
@@ -347,7 +347,7 @@ int SlistCycleLen(SlistNode*entry,SlistNode* meet)//Èô´ø»·£¬Çó»·µÄ³¤¶È£¿
 // Á´±íÏà½»ÎÊÌâ 
 int SlistIsCrossNode(SlistNode* list1, SlistNode* list2)//ÅÐ¶ÏÁ½¸öÁ´±íÊÇ·ñÏà½»
 {
-	SlistNode*cur1=list1, *cur2=list2;
+	SlistNode*cur1 = list1, *cur2 = list2;
 	while (cur1->next)
 		cur1 = cur1->next;
 	while (cur2->next)
@@ -361,7 +361,7 @@ int SlistIsCrossNode(SlistNode* list1, SlistNode* list2)//ÅÐ¶ÏÁ½¸öÁ´±íÊÇ·ñÏà½»
 SlistNode* SlistCrossNode(SlistNode* list1, SlistNode* list2)//ÈôÏà½»£¬Çó½»µã¡££¨¼ÙÉèÁ´±í²»´ø»·£©
 {
 	int len1 = 0, len2 = 0, gap = 0;
-	SlistNode*shortlist=list2, *longlist=list1;
+	SlistNode*shortlist = list2, *longlist = list1;
 	SlistNode*cur1 = list1, *cur2 = list2;
 	while (cur1)
 	{
@@ -373,8 +373,8 @@ SlistNode* SlistCrossNode(SlistNode* list1, SlistNode* list2)//ÈôÏà½»£¬Çó½»µã¡££
 		++len2;
 		cur2 = cur2->next;
 	}
-	
-	
+
+
 	if (len1 < len2)
 	{
 		longlist = list2;
@@ -427,14 +427,14 @@ void ComplexListPrint(ComplexListNode*list)
 	ComplexListNode*cur = list;
 	while (cur)
 	{
-		if (cur->random==NULL)
+		if (cur->random == NULL)
 		{
 			printf("%d:NULL", cur->data);
-			cur = cur->next;	
+			cur = cur->next;
 		}
 		else
 		{
-			printf("%d:%d  ", cur->data,cur->random->data);
+			printf("%d:%d  ", cur->data, cur->random->data);
 			cur = cur->next;
 		}
 	}
@@ -463,9 +463,9 @@ ComplexListNode* CopyComplexList(ComplexListNode*list)
 	{
 		ComplexListNode*newnode = BuyComplexNode(cur->data);
 		ComplexListNode*next = cur->next;
-		
+
 		cur->next = newnode;
-		newnode->next=next;
+		newnode->next = next;
 
 		cur = newnode->next;
 	}
@@ -492,7 +492,7 @@ ComplexListNode* CopyComplexList(ComplexListNode*list)
 	cur = list->next;
 	while (cur)
 	{
-		ComplexListNode*copy=cur->next;
+		ComplexListNode*copy = cur->next;
 		cur->next = copy->next;
 
 		tail->next = copy;
