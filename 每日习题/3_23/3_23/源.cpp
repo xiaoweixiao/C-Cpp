@@ -1,3 +1,4 @@
+//网上看了思路，代码过了
 //#include<iostream>
 //#include<vector>
 //
@@ -25,8 +26,8 @@
 //	return 0;
 //}
 
-
-#include<cstdio>
+//第二题不会做，这是网上拷贝的
+#/*include<cstdio>
 #include<string>
 #include<cstring>
 #include<iostream>
@@ -55,4 +56,52 @@ int main(){
 	if (f[a.size()][b.size()]) cout << "matched" << endl;
 	else cout << "not matched" << endl;
 	return 0;
+}*/
+
+#include<iostream>
+#include<vector>
+using namespace std;
+class Solution {
+public:
+	int InversePairs(vector<int> data) {
+		vector<int> copy(data.begin(), data.end());
+		int ret = Count(data, copy, 0, data.size() - 1);
+		return ret % 1000000007;
+	}
+	int Count(vector<int>& data, vector<int>& copy, int start, int end)
+	{
+		if (start == end)
+			return 0;
+
+		int len = (end - start) / 2;
+		int left = Count(data, copy, start, len);
+		int right = Count(data, copy, len + 1, end);
+
+		int i = len, j = end;
+		int index = end;//copyindex
+		int count = 0;
+		while (i >= start && j >= len + 1)
+		{
+			if (data[i] > data[j])
+			{
+				copy[index--] = data[i--];
+				count += j - start - len;
+			}
+			else
+				copy[index--] = data[j--];
+		}
+
+		for (; i >= start; i--)
+			copy[index--] = data[i];
+		for (; j >= len + 1; j--)
+			copy[index--] = data[j];
+
+		return left + right + count;
+	}
+};
+int main()
+{
+	vector<int> input{ 7, 5, 6, 4 };
+	Solution s;
+	s.InversePairs(input);
 }
