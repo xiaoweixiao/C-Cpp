@@ -37,33 +37,70 @@
 //}
 
 
-//2
+//2²»»á 
+//#include<iostream>
+//#include<string>
+//using namespace std;
+//int main()
+//{
+//	string s1, s2;
+//	cin >> s1 >> s2;
+//	int len = 0;
+//	int maxlen = 0;
+//	string ret;
+//	for (size_t i = 0; i < s1.size(); i++)
+//	{
+//		for (size_t j = 0; j < s2.size(); j++)
+//		{
+//			while (s1[i] == s2[j])
+//			{
+//				len++;
+//				i++, j++;
+//			}
+//			if (len>maxlen)
+//			{
+//				ret = s1.substr(i - len, i);
+//				maxlen = len;
+//			}
+//		}
+//	}
+//	cout << ret << endl;
+//	system("pause");
+//}
+
+//I am a student student. a am I
 #include<iostream>
 #include<string>
+#include<algorithm>
 using namespace std;
+class Solution {
+public:
+	string ReverseSentence(string str) {
+		string ret;
+		reverse(str.begin(), str.end());
+
+		size_t start = 0;
+		size_t pos = str.find(' ', start);
+		string tmp;
+		while (pos != string::npos)
+		{
+			tmp = str.substr(start, pos - start);
+			reverse(tmp.begin(), tmp.end());
+			tmp.push_back(' ');
+			ret.insert(ret.size(), tmp);
+			start = pos + 1;
+			pos = str.find(' ', start);
+		}
+		tmp = str.substr(start);
+		reverse(tmp.begin(), tmp.end());
+		ret.insert(ret.size(), tmp);
+		return ret;
+	}
+};
 int main()
 {
-	string s1, s2;
-	cin >> s1 >> s2;
-	int len = 0;
-	int maxlen = 0;
-	string ret;
-	for (size_t i = 0; i < s1.size(); i++)
-	{
-		for (size_t j = 0; j < s2.size(); j++)
-		{
-			while (s1[i] == s2[j])
-			{
-				len++;
-				i++, j++;
-			}
-			if (len>maxlen)
-			{
-				ret = s1.substr(i - len, i);
-				maxlen = len;
-			}
-		}
-	}
-	cout << ret << endl;
+	Solution s;
+	string str{ "student. a am I" };
+	cout<<s.ReverseSentence(str);
 	system("pause");
 }
