@@ -37,3 +37,61 @@
 //1,2,3,4,5
 //120, 60, 40, 30, 24
 
+#include<iostream>
+#include<vector>
+using namespace std;
+int main()
+{
+	int N, M;
+	cin >> N >> M;
+	vector<vector<int>> in;
+	in.resize(N);
+	for (int i = 0; i < N; i++)
+		in[i].resize(M);
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+			cin >> in[i][j];
+	}
+
+	vector<vector<int>> Is;
+	Is.resize(N);
+	for (int i = 0; i < N; i++)
+		Is[i].resize(M);//是否可达
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			if (i == 0 && j == 0)
+				Is[i][j] = 1;//可达
+			else if (i == 0)
+			{
+				if (in[i][j] == 0 && Is[i][j - 1])//
+					Is[i][j] = 1;
+			}
+			else if (j == 0)
+			{
+				if (in[i][j] == 0 && Is[i - 1][j])
+					Is[i][j] = 1;
+			}
+			else
+			{
+				if (in[i][j] == 0 && (Is[i - 1][j] || Is[i][j - 1]))
+					Is[i][j] = 1;
+			}
+		}
+	}
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			if (Is[i][j])
+				cout <<'('<<i<<','<<j<<')' << endl;
+		}
+	}
+	system("pause");
+	return 0;
+}
