@@ -43,47 +43,84 @@
 //	return 0;
 //}
 
+//编程1题
 //#include<iostream>
 //#include<string>
 //using namespace std;
 //int main()
 //{
-//	string str, res, cur;
-//	cin >> str;
-//	for (int i = 0; i < str.length(); i++)
+//	string in, ret, cur;
+//	cin >> in;
+//	//这里注意i要遍历到in.size()，因为最长的那个字符可能是abcd12345ed125ss123456789
+//	//而in.size()是不可见字符不是数字，就会去判断当前cur的长度
+//	for (size_t i = 0; i <= in.size(); i++)
 //	{
-//		// 数字+=到cur
-//		if (str[i] >= '0' && str[i] <= '9')
-//			cur += str[i];
+//		if (in[i] >= '0'&&in[i] <= '9')
+//			cur += in[i];
 //		else
 //		{
-//			// 找出更长的字符串，则更新字符串
-//			if (res.length() < cur.length())
-//				res = cur;
+//			if (cur.size()>ret.size())//比ret长替换ret
+//				ret = cur;
 //			else
 //				cur.clear();
 //		}
 //	}
-//	if (res.length() < cur.length())
-//		res = cur;
-//	cout << res;
+//	cout << ret << endl;
 //	return 0;
 //}
 
+
+//编程2题
 //#include<iostream>
+//#include<map>
 //using namespace std;
 //int main()
 //{
-//	int count[100] = { 0 };//数组置0，然后输入n，则对应位置加1，最后遍历数组
-//	int x = 0, n = 0; //找到大于等于一半次数的那个
-//	while (cin >> x){
-//		count[x]++;
+//	map<int, int> in;
+//	int num, n = 0;
+//	while (cin >> num)
+//	{
+//		in[num]++;
 //		n++;
 //	}
-//	for (int i = 0; i<n; i++){
-//		if (count[i] >= n / 2)
+//
+//	for (size_t i = 0; i<in.size(); i++)
+//	{
+//		if (in[i] >= n / 2)
+//		{
 //			cout << i << endl;
+//			return 0;
+//		}
 //	}
 //	return 0;
 //}
 
+#include<iostream>
+#include<vector>
+#include<algorithm>
+using namespace std;
+int main()
+{
+	int num;
+	vector<int> in;
+	while (cin >> num)
+		in.push_back(num);
+
+	int count = 1;
+	int ret = in[0];
+	for (size_t i = 1; i<in.size(); i++)
+	{
+		if (ret == in[i])
+			count++;
+		else
+			count--;
+		if (count == 0)//i走过的路径中，ret出现次数少于没出现次数
+		{
+			ret = in[i];
+			count = 1;
+		}
+	}
+	//一定存在出现次数大于等于长度一半的，ret最终指向的就是这个数
+	cout << ret << endl;
+	return 0;
+}
